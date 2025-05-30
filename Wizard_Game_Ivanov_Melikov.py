@@ -1,3 +1,4 @@
+from calendar import c
 import pygame
 
 pygame.init()
@@ -20,6 +21,10 @@ Wizard_X = 50 #move
 Wizard_Y = 400 #jump
 Fireball = 0 #add 2 seconds timeout
 Shield = 0 #holds for 5 sec, 5 sec timeout recharge
+Shield_Active=0
+Shield_Duration=5000
+Shield_Cooldown=5000
+Last_Shield_Time= -Shield_Cooldown
 Shield_Recharge = 0 #Recharge timer
 Shield_Recharge_Dial = 0 #Show that shield is recharging
 Level = 0 # 0 - welcome 1 - tutorial 2 - walk level 3 - zombie fight 4 - skeleton fight 5 - frog good luck 6 boss fight
@@ -55,6 +60,7 @@ pygame.draw.rect(screen,(255,0,0),(Wizard_X,Wizard_Y,90,90),5) # Draw the wizard
 
 while gameover == False:
     clock.tick(60) # Set the frame rate to 60 FPS
+    current_time=pygame.time.get_ticks()  # Get the current time in milliseconds
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameover = True
@@ -63,12 +69,18 @@ while gameover == False:
                 directionx="move_right"
             elif event.key == pygame.K_LEFT: # Move the wizard to the left
                 directionx="move_left"
+            elif event.key== pygame.K_f and not Shield_Active and (current_time - Last_Shield_Time) >= (Shield_Duration + Shield_Cooldown):
+                    Last_Shield_Time= current_time  # Reset the shield cooldown timer
+                    Shield_Active = 1
+                   
             elif jump == 0:
                 if event.key==pygame.K_v: # Jump action
                  jump= 1
         elif event.type == pygame.KEYUP:
             if event.key==pygame.K_RIGHT or event.key   == pygame.K_LEFT:
                 directionx=0
+    if Shield_Active and (current_time - Last_Shield_Time) >= Shield_Duration:
+        Shield_Active=0
     if directionx == "move_left": # Move the wizard to the left
         if Wizard_X >0: # Ensure the wizard doesn't move off the screen
             Wizard_X -=3
@@ -91,7 +103,9 @@ while gameover == False:
             v = 10
             jump = 0 
     screen.fill((255, 255, 0))  # Clear the screen with yellow
-    pygame.draw.rect(screen,(255,0,0),(Wizard_X,Wizard_Y,90,90),5) # Draw the wizard as a red rectangle
+    pygame.draw.rect(screen,(255,0,0),(Wizard_X,Wizard_Y,90,90),5)
+    if Shield_Active==1:# Draw the wizard as a red rectangle
+        pygame.draw.circle(screen,(0,255,0),(Wizard_X+35,Wizard_Y+35),55)
     pygame.display.update() # Update the display
     
 pygame.quit()
