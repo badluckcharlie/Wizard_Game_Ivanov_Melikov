@@ -6,19 +6,21 @@ gameover = False
 screenX = 1200
 screenY = 800
 screen=pygame.display.set_mode([screenX,screenY])
-pygame.display.set_caption("keyboard input")
+pygame.display.set_caption("Wizard")
 screen.fill(lBlue)# заменить  на пнг от уровней
 clock = pygame.time.Clock()
 
 Wizard = 0 #add png
 Wizard_Move = 0 #add move anim when use fireball or shield
 Wizard_Block_Move = 0 #Block movement while in dialogue
+Wizard_Block_Move_Dial = 0 #Show that moving is currentrly blocked
 Wizard_Death = 0 #If wizard dies rotate 90 degrees
 Wizard_X = 0 #move
 Wizard_Y = 0 #jump
 Fireball = 0 #add 2 seconds timeout
 Shield = 0 #holds for 5 sec, 5 sec timeout recharge
 Shield_Recharge = 0 #Recharge timer
+Shield_Recharge_Dial = 0 #Show that shield is recharging
 Level = 0 # 0 - welcome 1 - tutorial 2 - walk level 3 - zombie fight 4 - skeleton fight 5 - frog good luck 6 boss fight
 
 Frog = 0 #Add frog png
