@@ -23,6 +23,30 @@
   <ItemGroup>
     <Compile Include="Wizard_Game_Ivanov_Melikov.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="antiwizard.png" />
+    <Content Include="background.mp3" />
+    <Content Include="Fireball.png" />
+    <Content Include="fireball.wav" />
+    <Content Include="frog.png" />
+    <Content Include="level0.png" />
+    <Content Include="level1.png" />
+    <Content Include="level2.png" />
+    <Content Include="level3.png" />
+    <Content Include="level4.png" />
+    <Content Include="level5.png" />
+    <Content Include="level6.png" />
+    <Content Include="level7.png" />
+    <Content Include="level8.png" />
+    <Content Include="lightning.png" />
+    <Content Include="lightning.wav" />
+    <Content Include="shield.png" />
+    <Content Include="shield.wav" />
+    <Content Include="skeleton.png" />
+    <Content Include="wizard.png" />
+    <Content Include="wizard_cast.png" />
+    <Content Include="zombie.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
